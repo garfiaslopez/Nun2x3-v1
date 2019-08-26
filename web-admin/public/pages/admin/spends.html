@@ -1,0 +1,80 @@
+
+<!--    THIS   ===>  Section -->
+
+    <div layout="column">
+        
+        <div flex layout="row" layout-sm="column">
+
+            <div flex="50" layout="column" flex-sm="100">
+
+                <md-subheader id="subtitle"  class="md-primary">Filtros</md-subheader>
+                <md-radio-group ng-model="Spends.FilterSelected" ng-change="Spends.FilterChanged()">
+
+                    <md-radio-button value="0">Hoy</md-radio-button>
+                    <md-radio-button value="1">Semana</md-radio-button>
+                    <md-radio-button value="2">Mes</md-radio-button>
+                    <md-radio-button value="3">Año</md-radio-button>
+                    <md-radio-button value="4">Rango</md-radio-button>
+
+                </md-radio-group>
+            </div>
+
+            <div flex="50" layout="column" flex-sm="100">
+                <md-subheader id="subtitle"  class="md-primary">Rango</md-subheader>
+                
+                <h4>Fecha Inicial</h4>
+                <input type="text" pick-a-date="Spends.FechaInicio" pick-a-date-options="Spends.options" ng-disabled="Spends.DisableRange" />
+                <br><br>
+                <h4>Fecha Final</h4>
+                <input type="text" pick-a-date="Spends.FechaFinal" pick-a-date-options="Spends.options" ng-disabled="Spends.DisableRange"/>
+
+
+            </div>
+
+        </div>
+
+
+        
+        <div flex layout="row" layout-align="space-around center">
+            
+            <md-button id="primarybtn" ng-click="Spends.Search()" class="md-raised md-primary">Buscar</md-button>
+
+        </div>
+
+                <br>
+
+        <md-divider></md-divider>
+                <br>
+
+        <div flex layout="row" layout-align="space-around center">
+            <h4>Gastos: #{{Spends.CountSpends}} </h4>    
+            <h4>Total: ${{Spends.TotalSpends}}</h4>        
+        </div>
+
+        <md-content>
+            <md-data-table-container>
+                <table md-data-table md-progress="Spends.isLoading">
+                    <thead md-order="date" md-trigger="onOrderChange">
+                        <tr>
+                            <th name="Fecha"></th>
+                            <th name="Descripcion"></th>
+                            <th numeric name="Total"></th>
+                            <th numeric name="Lavado"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr md-auto-select ng-repeat="SpendDB in Spends.SpendsOnDB">
+                            <td>{{SpendDB.date}}</td>
+                            <td>{{SpendDB.denomination}}</td>
+                            <td>{{SpendDB.total | number: 1}}</td>
+                            <td>{{SpendDB.lavado_id.info.name}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-data-table-container>
+
+            <md-data-table-pagination md-limit="10" md-page="1" md-total="{{SpendDB.length}}" md-trigger="onPaginationChange"></md-data-table-pagination>
+
+        </md-content>
+
+</div>                                  

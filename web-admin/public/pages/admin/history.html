@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<div flex layout="row" layout-sm="column">
+    <div flex="40" layout="column" flex-sm="100">
+        <md-subheader id="subtitle"  class="md-primary">Filtros</md-subheader>
+        <md-radio-group ng-model="History.FilterSelected" ng-change="History.FilterChanged()">
+            <md-radio-button value="0">Hoy</md-radio-button>
+            <md-radio-button value="1">Semana</md-radio-button>
+            <md-radio-button value="2">Mes</md-radio-button>
+            <md-radio-button value="3">Año</md-radio-button>
+            <md-radio-button value="4">Rango</md-radio-button>
+        </md-radio-group>
+        <div flex layout="row" layout-align="space-around center">
+            <input placeholder="Fecha inicio" type="text" pick-a-date="History.FechaInicio" pick-a-date-options="History.options" ng-disabled="History.DisableRange" />
+            <input placeholder="Fecha Final"  type="text" pick-a-date="History.FechaFinal" pick-a-date-options="History.options" ng-disabled="History.DisableRange"/>
+        </div>
+        <div flex layout="row" layout-align="space-around center">
+            <md-button id="primarybtn" ng-click="History.Search()" class="md-raised md-primary">Buscar</md-button>
+        </div>
+    </div>
+
+    <div flex="60" layout="column" flex-sm="100">
+        <md-subheader class="md-primary">Cortes</md-subheader>
+        <md-content>
+            <md-table-container>
+                <table md-table md-progress="History.isLoadingCortes">
+                    <thead md-head>
+                        <tr md-row>
+                            <th md-column># Corte</th>
+                            <th md-column>Fecha</th>
+                            <th md-column>Encargado</th>
+                            <th md-column>Tickets</th>
+                            <th md-column>Gastos</th>
+                            <th md-column>Ingresos</th>
+                            <th md-column>vales</th>
+                        </tr>
+                    </thead>
+                    <tbody md-body>
+                        <tr md-row md-auto-select ng-repeat="CorteDB in History.CortesOnDB">
+                            <td md-cell>{{CorteDB.corte_id}}</td>
+                            <td md-cell>{{CorteDB.date}}</td>
+                            <td md-cell>{{CorteDB.user}}</td>
+                            <td md-cell>#{{CorteDB.countTickets}}-{{CorteDB.totalTickets | number: 1}}</td>
+                            <td md-cell>#{{CorteDB.countSpends}}-{{CorteDB.totalSpends | number: 1}}</td>
+                            <td md-cell>#{{CorteDB.countIngresses}}-{{CorteDB.totalIngresses | number: 1}}</td>
+                            <td md-cell>#{{CorteDB.countPaybills}}-{{CorteDB.totalPaybills | number: 1}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
+            <md-table-pagination md-limit="5" md-page="1" md-total="{{History.CortesOnDB.length}}" md-on-paginate="onPaginateCortes" md-page-select></md-table-pagination>
+        </md-content>
+    </div>
+</div>
+    <br>
+    <md-divider></md-divider>
+    <br>
+    <div ng-cloak>
+        <md-content>
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab label="Tickets">
+                    <md-content class="md-padding">
+
+                        <div flex layout="column">
+                            <div flex layout="row" layout-align="space-around center">
+                                <h4>Tickets: #{{History.TicketsCount}} </h4>
+                                <h4>Total: ${{History.TotalTickets}}</h4>
+                            </div>
+                            <md-content>
+                                <md-table-container>
+                                    <table id="TableTickets" md-data-table md-progress="History.isLoading">
+                                        <thead md-order="date" md-trigger="onOrderChange">
+                                            <tr>
+                                                <th name="Fecha"></th>
+                                                <th name="Corte"></th>
+                                                <th name="Encargado"></th>
+                                                <th name="Tiempo"></th>
+                                                <th name="Vehiculo"></th>
+                                                <th numeric name="Total"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr md-auto-select ng-repeat="TicketDB in History.TicketsOnDB">
+                                                <td>{{TicketDB.date}}</td>
+                                                <td>{{TicketDB.corte_id}}</td>
+                                                <td>{{TicketDB.user}}</td>
+                                                <td>{{TicketDB.washingTime}}</td>
+                                                <td>{{TicketDB.car.denomination}}</td>
+                                                <td>{{TicketDB.total | number: 1}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </md-table-container>
+
+                                <md-table-pagination md-limit="10" md-page="1" md-total="{{History.TicketsOnDB.length}}" md-trigger="onTicketsPagination"></md-table-pagination>
+
+                            </md-content>
+                        </div>
+                    </md-content>
+                </md-tab>
+
+
+                <md-tab label="Gastos">
+                    <md-content class="md-padding">
+
+
+                        <div flex layout="column">
+                            <div flex layout="row" layout-align="space-around center">
+                                <h4>Gastos: #{{History.SpendsCount}} </h4>
+                                <h4>Total: ${{History.TotalSpends}}</h4>
+                            </div>
+                            <md-content>
+                                <md-data-table-container>
+                                    <table md-data-table md-progress="History.isLoading">
+                                        <thead md-order="date" md-trigger="onOrderChange">
+                                            <tr>
+                                                <th name="Fecha"></th>
+                                                <th name="Encargado"></th>
+                                                <th name="Descripcion"></th>
+                                                <th numeric name="Total"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr md-auto-select ng-repeat="SpendDB in History.SpendsOnDB">
+                                                <td>{{SpendDB.date}}</td>
+                                                <td>{{SpendDB.user}}</td>
+                                                <td>{{SpendDB.denomination}}</td>
+                                                <td>{{SpendDB.total | number: 1}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </md-data-table-container>
+
+                                <md-data-table-pagination md-limit="5" md-page="1" md-total="{{History.SpendsOnDB.length}}" md-trigger="onPaginationChange"></md-data-table-pagination>
+
+                            </md-content>
+                        </div>
+
+
+                    </md-content>
+                </md-tab>
+
+
+
+                <md-tab label="Ingresos">
+                    <md-content class="md-padding">
+
+                        <div flex layout="column">
+                            <div flex layout="row" layout-align="space-around center">
+                                <h4>Ingresos: #{{History.IngressesCount}} </h4>
+                                <h4>Total: ${{History.TotalIngresses}}</h4>
+                            </div>
+                            <md-content>
+                                <md-data-table-container>
+                                    <table md-data-table md-progress="History.isLoading">
+                                        <thead md-order="date" md-trigger="onOrderChange">
+                                            <tr>
+                                                <th name="Fecha"></th>
+                                                <th name="Encargado"></th>
+                                                <th name="Descripcion"></th>
+                                                <th numeric name="Total"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr md-auto-select ng-repeat="IngressDB in History.IngressesOnDB">
+                                                <td>{{IngressDB.date}}</td>
+                                                <td>{{IngressDB.user}}</td>
+                                                <td>{{IngressDB.denomination}}</td>
+                                                <td>{{IngressDB.total | number: 1}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </md-data-table-container>
+
+                                <md-data-table-pagination md-limit="5" md-page="1" md-total="{{History.IngressesOnDB.length}}" md-trigger="onPaginationChange"></md-data-table-pagination>
+
+                            </md-content>
+                        </div>
+
+
+
+                    </md-content>
+                </md-tab>
+
+
+                <md-tab label="Vales">
+                    <md-content class="md-padding">
+
+                        <div flex layout="column">
+                            <div flex layout="row" layout-align="space-around center">
+                                <h4>Vales: #{{History.PaybillsCount}} </h4>
+                                <h4>Total: ${{History.TotalPaybills}}</h4>
+                            </div>
+                            <md-content>
+                                <md-data-table-container>
+                                    <table md-data-table md-progress="History.isLoading">
+                                        <thead md-order="date" md-trigger="onOrderChange">
+                                            <tr>
+                                                <th name="Fecha"></th>
+                                                <th name="Encargado"></th>
+                                                <th name="Portador"></th>
+                                                <th numeric name="Total"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr md-auto-select ng-repeat="PaybillDB in History.PaybillsOnDB">
+                                                <td>{{PaybillDB.date}}</td>
+                                                <td>{{PaybillDB.user}}</td>
+                                                <td>{{PaybillDB.denomination}}</td>
+                                                <td>{{PaybillDB.total | number: 1}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </md-data-table-container>
+
+                                <md-data-table-pagination md-limit="5" md-page="1" md-total="{{History.PaybillsOnDB.length}}" md-trigger="onPaginationChange"></md-data-table-pagination>
+
+                            </md-content>
+                        </div>
+
+                    </md-content>
+                </md-tab>
+
+
+            </md-tabs>
+        </md-content>
+    </div>
+
+    <div flex layout="row" layout-align="space-around center">
+        <md-button id="primarybtn" ng-click="History.PrintTableTickets()" class="md-raised md-primary">Imprimir</md-button>
+    </div>

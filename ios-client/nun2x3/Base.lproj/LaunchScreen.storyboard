@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
+                        <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_Background" translatesAutoresizingMaskIntoConstraints="NO" id="K40-l6-J3k">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_Car" translatesAutoresizingMaskIntoConstraints="NO" id="8jy-5B-F1X">
+                                <rect key="frame" x="200" y="235" width="200" height="130"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="Uys-8b-ZXF"/>
+                                    <constraint firstAttribute="width" constant="200" id="dRa-PF-Dux"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="K40-l6-J3k" secondAttribute="bottom" id="NBS-V3-bdZ"/>
+                            <constraint firstItem="8jy-5B-F1X" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="PkZ-gB-upk"/>
+                            <constraint firstItem="K40-l6-J3k" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" id="b36-vD-GIC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="K40-l6-J3k" secondAttribute="trailing" constant="-20" id="cRO-3b-UUt"/>
+                            <constraint firstItem="K40-l6-J3k" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-20" id="hYK-uJ-1WY"/>
+                            <constraint firstItem="8jy-5B-F1X" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="msh-bV-Pzy"/>
+                        </constraints>
+                    </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icon_Background" width="1201" height="1201"/>
+        <image name="icon_Car" width="1180" height="760"/>
+    </resources>
+</document>

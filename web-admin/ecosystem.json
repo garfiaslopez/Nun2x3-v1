@@ -1,0 +1,45 @@
+{
+  /**
+   * Application configuration section
+   * http://pm2.keymetrics.io/docs/usage/application-declaration/
+   */
+  apps : [
+    // First application
+    {
+      name      : "Admin",
+      script    : "server.js",
+      env: {
+        COMMON_VARIABLE: "true"
+      },
+      env_production : {
+        NODE_ENV: "production"
+      }
+    }
+  ],
+
+  /**
+   * Deployment section
+   * http://pm2.keymetrics.io/docs/usage/deployment/
+   */
+  deploy : {
+    production : {
+      user : "node",
+      host : "http://104.236.74.122/",
+      ref  : "origin/master",
+      repo : "git@bitbucket.org:garfiaslopezfreelance/nun2x3_admin.git",
+      path : "/root/nun2x3_admin",
+      "post-deploy" : "npm install && pm2 startOrRestart ecosystem.json --env production"
+    },
+    dev : {
+      user : "node",
+      host : "http://127.0.0.1/",
+      ref  : "origin/develop",
+      repo : "git@bitbucket.org:garfiaslopezfreelance/nun2x3_admin.git",
+      path : "/root/nun2x3_admin",
+      "post-deploy" : "npm install && pm2 startOrRestart ecosystem.json --env dev",
+      env  : {
+        NODE_ENV: "dev"
+      }
+    }
+  }
+}

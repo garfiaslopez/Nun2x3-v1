@@ -1,0 +1,112 @@
+<section>
+
+    <md-grid-list layout-margin flex
+                md-cols-sm="2" md-cols="3" md-cols-gt-md="3"
+                md-row-height="2:1" md-row-height-sm="2:2"
+                md-gutter="12px">
+
+        <md-grid-tile class="md-whiteframe-z1 lightblue">
+            <div layout-fill layout="row" layout-align="center" class="md-tile-content">
+                <h2>#{{Dashboard.CountTickets}}</h2>
+            </div>
+            <md-grid-tile-footer>
+                <div class="md-tile-content" layout="row">
+                    <md-icon class="DashboardIcon" md-svg-icon="receipt"></md-icon>
+                    <h3 layout-padding>Tickets</h3>
+                </div>
+            </md-grid-tile-footer>
+        </md-grid-tile>
+
+
+
+        <md-grid-tile class="md-whiteframe-z1 green">
+            <div layout-fill layout="row" layout-align="center" class="md-tile-content">
+                <h2>${{Dashboard.TotalGanancias | number : fractionSize}}</h2>
+            </div>
+
+            <md-grid-tile-footer>
+                <div class="md-tile-content" layout="lightblue">
+                    <md-icon md-svg-icon="ganancias"></md-icon>
+                    <h3 layout-padding>Total</h3>
+                </div>
+            </md-grid-tile-footer>
+        </md-grid-tile>
+
+
+
+        <md-grid-tile class="md-whiteframe-z1 blackgreen">
+            <div layout-fill layout="row" layout-align="center" class="md-tile-content">
+                <h2>${{Dashboard.TotalTickets | number : fractionSize}}</h2>
+            </div>
+            <md-grid-tile-footer>
+                <div class="md-tile-content" layout="row">
+                    <md-icon class="DashboardIcon" md-svg-icon="cars"></md-icon>
+                    <h3 layout-padding>Autos</h3>
+                </div>
+            </md-grid-tile-footer>
+        </md-grid-tile>
+
+
+        <md-grid-tile class="md-whiteframe-z1 lightred">
+            <div layout-fill layout="row" layout-align="center" class="md-tile-content">
+                <h2>${{Dashboard.TotalSpends | number : fractionSize}}</h2>
+            </div>
+            <md-grid-tile-footer>
+                <div class="md-tile-content" layout="row">
+                    <md-icon md-svg-icon="spends"></md-icon>
+                    <h3 layout-padding>#{{Dashboard.CountSpends}} Gastos</h3>
+                </div>
+            </md-grid-tile-footer>
+        </md-grid-tile>
+
+
+        <md-grid-tile class="md-whiteframe-z1 orange">
+            <div layout-fill layout="row" layout-align="center" class="md-tile-content">
+                <h2>${{Dashboard.TotalIngresses | number : fractionSize}}</h2>
+            </div>
+            <md-grid-tile-footer>
+                <div class="md-tile-content" layout="row">
+                    <md-icon md-svg-icon="ingresses"></md-icon>
+                    <h3 layout-padding>#{{Dashboard.CountIngresses}}Ingresos</h3>
+                </div>
+            </md-grid-tile-footer>
+        </md-grid-tile>
+
+
+
+        <md-grid-tile class="md-whiteframe-z1 teal">
+            <div layout-fill layout="row" layout-align="center" class="md-tile-content">
+                <h2>${{Dashboard.TotalPaybills | number : fractionSize}}</h2>
+            </div>
+            <md-grid-tile-footer>
+                <div class="md-tile-content" layout="row">
+                    <md-icon md-svg-icon="paybills"></md-icon>
+                    <h3 layout-padding>#{{Dashboard.CountPaybills}}Vales</h3>
+                </div>
+            </md-grid-tile-footer>
+        </md-grid-tile>
+
+    </md-grid-list>
+
+    <md-divider></md-divider>
+    <md-subheader class="md-primary">Tickets Activos ({{Dashboard.ActiveTicketsCount}})</md-subheader>
+
+
+         <md-grid-list layout-margin flex
+                    md-cols-sm="2" md-cols="6" md-cols-gt-md="6"
+                    md-row-height="2:2" md-row-height-sm="2:2"
+                    md-gutter="6px">
+
+
+
+            <md-grid-tile ng-repeat="activeTicket in Dashboard.ActiveTicketsOnDB" class="md-whiteframe-z1 lightblue">
+                <div layout-fill layout="column" layout-align="center center" class="md-tile-content">
+                    <h2>#{{activeTicket.order_id}}</h2>
+                    <h2>{{activeTicket.created}}</h2>
+                </div>
+            </md-grid-tile>
+
+        </md-grid-list>
+
+
+</section>

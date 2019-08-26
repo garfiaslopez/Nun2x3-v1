@@ -1,0 +1,41 @@
+PODS:
+  - ActionSheetPicker-3.0 (2.2.0)
+  - Alamofire (4.0.0)
+  - NVActivityIndicatorView (3.0)
+  - Realm (1.1.0):
+    - Realm/Headers (= 1.1.0)
+  - Realm/Headers (1.1.0)
+  - RealmSwift (1.1.0):
+    - Realm (= 1.1.0)
+  - Socket.IO-Client-Swift (8.0.2)
+  - SwiftSpinner (1.0.2)
+  - SwiftyJSON (3.0.0)
+  - SWTableViewCell (0.3.7)
+  - UrbanAirship-iOS-SDK (8.0.1)
+
+DEPENDENCIES:
+  - ActionSheetPicker-3.0
+  - Alamofire
+  - NVActivityIndicatorView
+  - RealmSwift
+  - Socket.IO-Client-Swift
+  - SwiftSpinner
+  - SwiftyJSON
+  - SWTableViewCell
+  - UrbanAirship-iOS-SDK
+
+SPEC CHECKSUMS:
+  ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
+  Alamofire: fef59f00388f267e52d9b432aa5d93dc97190f14
+  NVActivityIndicatorView: 81953b5e65093ba79edf4fe7268e002039ca5268
+  Realm: ceecf1a4540c4ce9efe196fe73fa9855bce05bd8
+  RealmSwift: 838058b2db95b12cb86bd0cf209df642c33fb60a
+  Socket.IO-Client-Swift: 136598e4a81a42b0e6855e7f94a0e5a6efdc5ff8
+  SwiftSpinner: 1c80ff6ea1c47e2faa1dfce0fcd5e6b39a47fd51
+  SwiftyJSON: f57b2b44bc166617372d1c70773591fe9f0f5fd4
+  SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
+  UrbanAirship-iOS-SDK: a4ff01ef90d5b32508818da5b8385828513702f9
+
+PODFILE CHECKSUM: c5f752d8ca80504a708637f0ae7192f89120d2f2
+
+COCOAPODS: 1.0.1

@@ -1,0 +1,91 @@
+
+<!--    THIS   ===>  Section -->
+
+ <section layout="column">
+
+     <md-subheader id="subtitle"  class="md-primary">Agregar Servicio</md-subheader>
+
+
+     <div flex layout="column">
+
+
+         <div flex layout="row" layout-sm="column" layout-align="space-around">
+
+             <div flex="30" flex-sm="100">
+
+                 <md-input-container>
+
+                     <label>Denominacion</label>
+
+                     <input ng-model="Services.Servicio.denomination">
+
+                 </md-input-container>
+
+             </div>
+
+
+             <div flex="30" flex-sm="100">
+
+                <md-input-container>
+
+                     <label>Precio</label>
+
+                     <input ng-model="Services.Servicio.price">
+
+                 </md-input-container>
+
+             </div>
+
+             <div flex="20" flex-sm="100">
+
+                 <md-select placeholder="Carwash" ng-model="Services.Servicio.lavado_id">
+
+                     <md-option ng-repeat="CarwashDB in Services.CarwashesOnDB" value="{{CarwashDB._id}}">
+                         {{CarwashDB.info.name}}
+                     </md-option>
+
+                 </md-select>
+
+             </div>
+
+             <div flex="20" flex-sm="100">
+
+                 <md-select placeholder="Imagen" ng-model="Services.Servicio.img">
+
+                     <md-option ng-repeat="Img in Services.Images" value="{{Img.value}}">
+                         {{Img.name}}
+                     </md-option>
+
+                 </md-select>
+
+             </div>
+         </div>
+
+     </div>
+
+     <div flex layout="row" layout-align="space-around center">
+
+         <md-button id="primarybtn" ng-click="Services.Submit()" class="md-raised md-primary">Guardar</md-button>
+
+         <md-button id="secondarybtn" ng-click="Services.CancelEditing()" class="md-raised md-accent" ng-if="Services.isEditing.flag" >
+         Cancelar</md-button>
+
+     </div>
+
+
+     <br>
+     <md-divider></md-divider>
+
+     <md-subheader id="subtitle" class="md-primary">Servicios Existentes</md-subheader>
+
+     <md-content flex  layout="column">
+         <md-list-item ng-repeat="ServDB in Services.ServicesOnDB" ng-click="Services.Edit(ServDB)">
+             <p>{{ ServDB.denomination }}</p>
+             <p>{{ ServDB.price | currency:"$" }}</p>
+             <p>{{ ServDB.lavado_id.info.name }}</p>
+             <md-icon md-svg-icon="delete" aria-label="delete" ng-click="Services.Delete(ServDB)" class="md-secondary md-hue-3"></md-icon>
+         </md-list-item>
+     </md-content>
+
+
+ </section>

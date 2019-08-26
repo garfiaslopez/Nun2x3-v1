@@ -1,0 +1,80 @@
+
+<!--    THIS   ===>  Section -->
+
+    <div layout="column">
+        
+        <div flex layout="row" layout-sm="column">
+
+            <div flex="50" layout="column" flex-sm="100">
+
+                <md-subheader id="subtitle"  class="md-primary">Filtros</md-subheader>
+                <md-radio-group ng-model="Stocks.FilterSelected" ng-change="Stocks.FilterChanged()">
+
+                    <md-radio-button value="0">Hoy</md-radio-button>
+                    <md-radio-button value="1">Semana</md-radio-button>
+                    <md-radio-button value="2">Mes</md-radio-button>
+                    <md-radio-button value="3">Año</md-radio-button>
+                    <md-radio-button value="4">Rango</md-radio-button>
+
+                </md-radio-group>
+            </div>
+
+            <div flex="50" layout="column" flex-sm="100">
+                <md-subheader id="subtitle"  class="md-primary">Rango</md-subheader>
+                
+                <h4>Fecha Inicial</h4>
+                <input type="text" pick-a-date="Stocks.FechaInicio" pick-a-date-options="Stocks.options" ng-disabled="Stocks.DisableRange" />
+                <br><br>
+                <h4>Fecha Final</h4>
+                <input type="text" pick-a-date="Stocks.FechaFinal" pick-a-date-options="Stocks.options" ng-disabled="Stocks.DisableRange"/>
+
+
+            </div>
+
+        </div>
+
+
+        
+        <div flex layout="row" layout-align="space-around center">
+            
+            <md-button id="primarybtn" ng-click="Stocks.Search()" class="md-raised md-primary">Buscar</md-button>
+
+        </div>
+
+                <br>
+
+        <md-divider></md-divider>
+                <br>
+
+        <div flex layout="row" layout-align="space-around center">
+            <h4>Gastos: #{{Stocks.CountStocks}} </h4>    
+            <h4>Total: ${{Stocks.TotalStocks}}</h4>        
+        </div>
+
+        <md-content>
+            <md-data-table-container>
+                <table md-data-table md-progress="Stocks.isLoading">
+                    <thead md-order="date" md-trigger="onOrderChange">
+                        <tr>
+                            <th name="Fecha de Entrega"></th>
+                            <th name="Descripcion"></th>
+                            <th numeric name="Total"></th>
+                            <th numeric name="Lavado"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr md-auto-select ng-repeat="StockDB in Stocks.StocksOnDB">
+                            <td>{{StockDB.deliverDate}}</td>
+                            <td>{{StockDB.product.denomination}}</td>
+                            <td>{{StockDB.total | number: 1}}</td>
+                            <td>{{StockDB.lavado_id.info.name}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-data-table-container>
+
+            <md-data-table-pagination md-limit="10" md-page="1" md-total="{{StockDB.length}}" md-trigger="onPaginationChange"></md-data-table-pagination>
+
+        </md-content>
+
+</div>                                  

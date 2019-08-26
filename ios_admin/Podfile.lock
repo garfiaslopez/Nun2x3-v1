@@ -1,0 +1,54 @@
+PODS:
+  - Alamofire (3.5.0)
+  - MaterialKit (0.3.5)
+  - Realm (1.1.0):
+    - Realm/Headers (= 1.1.0)
+  - Realm/Headers (1.1.0)
+  - RealmSwift (1.1.0):
+    - Realm (= 1.1.0)
+  - Socket.IO-Client-Swift (7.0.3)
+  - SwiftyJSON (2.4.0)
+  - SWTableViewCell (0.3.7)
+
+DEPENDENCIES:
+  - Alamofire (~> 3.5)
+  - MaterialKit (from `https://github.com/reesemclean/MaterialKit`, branch `swift_2`)
+  - RealmSwift
+  - Socket.IO-Client-Swift (from `https://github.com/socketio/socket.io-client-swift.git`, branch `swift2.3`)
+  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`, branch `swift2`)
+  - SWTableViewCell
+
+EXTERNAL SOURCES:
+  MaterialKit:
+    :branch: swift_2
+    :git: https://github.com/reesemclean/MaterialKit
+  Socket.IO-Client-Swift:
+    :branch: swift2.3
+    :git: https://github.com/socketio/socket.io-client-swift.git
+  SwiftyJSON:
+    :branch: swift2
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+CHECKOUT OPTIONS:
+  MaterialKit:
+    :commit: 0c1daf9e16894ad46772757148a2a01a4101d4cd
+    :git: https://github.com/reesemclean/MaterialKit
+  Socket.IO-Client-Swift:
+    :commit: fdb00d63ffaab83864b06248b08551ac2780213a
+    :git: https://github.com/socketio/socket.io-client-swift.git
+  SwiftyJSON:
+    :commit: 54017d514a87b2b855b407131292c510cdeb65f8
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+SPEC CHECKSUMS:
+  Alamofire: b70a7352335f8ea5babd0a923eb7e8eacc67b877
+  MaterialKit: 6f1e9382f89593df768bc0c31ded9952a6d8ad46
+  Realm: ceecf1a4540c4ce9efe196fe73fa9855bce05bd8
+  RealmSwift: 838058b2db95b12cb86bd0cf209df642c33fb60a
+  Socket.IO-Client-Swift: a4d6474309fa82b52736888abe53a75ba33d09a1
+  SwiftyJSON: 96918c1bf505efa50c4f72957018dd3452090c9c
+  SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
+
+PODFILE CHECKSUM: 4ee4cc7e9de4e55bfb1e9066a2436781ba3010ce
+
+COCOAPODS: 1.0.1

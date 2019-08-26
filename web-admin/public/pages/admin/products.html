@@ -1,0 +1,116 @@
+   
+<!--    THIS   ===>  Section -->
+
+    <section layout="column">
+        
+        <md-subheader id="subtitle"  class="md-primary">Agregar Producto</md-subheader>
+
+        
+        <div flex layout="row">
+
+            <div flex layout="column">
+       
+                <div flex layout="row" layout-sm="column" layout-align="space-around">
+
+                    <div flex="40" flex-sm="100">
+                        
+                        <md-input-container>
+
+                            <label>Denominacion</label>
+
+                            <input ng-model="Products.Producto.denomination">
+                    
+                        </md-input-container>
+
+                    </div>
+
+
+                    <div flex="60" flex-sm="100">
+
+                       <md-input-container>
+
+                            <label>Precio</label>
+
+                            <input ng-model="Products.Producto.price">
+                    
+                        </md-input-container>
+
+                    </div>
+
+                </div>
+
+
+                <div flex layout="row" layout-align="space-around center">
+                    
+                    <md-button id="primarybtn" ng-click="Products.Submit()" class="md-raised md-primary">Guardar</md-button>
+                    
+                    <md-button id="secondarybtn" ng-click="Products.CancelEditing()" class="md-raised md-accent" ng-if="Products.isEditing.flag" >
+                    Cancelar</md-button>
+
+                </div>
+
+            </div>
+
+            <div flex layout="column">
+       
+                <md-subheader id="subtitle" class="md-primary">Productos Existentes</md-subheader>
+
+                <md-content flex  layout="column">
+                    <md-list-item ng-repeat="ProductDB in Products.ProductsOnDB" ng-click="Products.Edit(ProductDB)">
+                        <p>{{ ProductDB.denomination }}</p>
+                        <p>{{ ProductDB.price | currency:"$" }}</p>
+                        <md-icon md-svg-icon="delete" aria-label="delete" ng-click="Products.Delete(ProductDB)" class="md-secondary md-hue-3"></md-icon>
+                    </md-list-item>
+                </md-content>
+
+            </div>
+
+
+
+        </div>        
+
+
+        <br>
+        <md-divider></md-divider>
+
+        <md-subheader id="subtitle"  class="md-primary">Agendar Entrega De Producto</md-subheader>
+
+
+        <div flex layout="row">
+
+            <div flex flex="30" layout="column">
+
+                <md-subheader class="md-no-sticky">Lavados</md-subheader>
+
+                <md-list-item ng-repeat="CarwashDB in Products.CarwashesOnDB">
+                    <p > {{ CarwashDB.info.name }} </p>
+                    <md-checkbox class="md-secondary" ng-model="CarwashDB.isSelected"></md-checkbox>
+                </md-list-item>
+
+            </div>
+
+            <div flex layout="column">
+
+                <md-select placeholder="Producto A Entregar" ng-model="Products.SelectedProduct">
+                    <md-option ng-repeat="ProductDB in Products.ProductsOnDB" value="{{ProductDB._id}}">
+                        {{ProductDB.denomination}}
+                    </md-option>
+                </md-select>
+
+                <md-input-container>
+                    <label>Cantidad A Entregar</label>
+                    <input ng-model="Products.Stock.quantity">
+                </md-input-container>
+
+                <h4>Fecha De Entrega</h4>
+                <input type="text" pick-a-date="Products.Stock.deliverDate" pick-a-date-options="Products.options" ng-disabled="Products.DisableRange" />
+            
+                <md-button id="primarybtn" ng-click="Products.SubmitDeliver()" class="md-raised md-primary">Agendar Entrega</md-button>
+
+            </div>
+
+
+        </div>
+                    
+
+    </section>                                  
